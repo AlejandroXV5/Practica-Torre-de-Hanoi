@@ -1,121 +1,173 @@
-# 📦 Sistema de Gestión de Inventario
+# 🗼 Torres de Hanói con Inteligencia Artificial
 
-> Un sistema completo de gestión de inventario desarrollado en Python con enfoque en buenas prácticas de programación y diseño orientado a objetos.
+> Implementación gráfica del clásico juego Torres de Hanói con sistema de IA para demostración automática y múltiples niveles de dificultad.
 
 ## 🎯 Descripción
 
-Este proyecto es un sistema de gestión de inventario desarrollado como ejercicio práctico para fortalecer habilidades en:
-- 🐍 Programación en Python
-- 📊 Estructura de datos
-- 📁 Manejo de archivos
-- 🏗️ Diseño orientado a objetos
+Este proyecto implementa una versión gráfica e interactiva del famoso juego **Torres de Hanói**, desarrollado como práctica académica para aplicar conceptos de:
 
-El sistema permite gestionar productos de manera eficiente, registrar movimientos de entrada y salida, y mantener un control actualizado del stock en tiempo real.
+- 🤖 **Inteligencia Artificial** - Algoritmos de resolución automática
+- 🎮 **Programación de Juegos** - Interfaz gráfica interactiva
+- 🏗️ **Estructuras de Control** - Manejo de flujo de programa
+- 📊 **Estructuras de Datos** - Implementación eficiente de algoritmos
 
-## ✨ Funcionalidades
+## 🎮 Características del Juego
 
-### 🛍️ Gestión de Productos
-- ➕ **Registro de productos**: Agregar nuevos productos con información completa
-- ✏️ **Actualización**: Modificar datos de productos existentes
-- 🔍 **Consulta**: Visualizar información detallada de productos
-- 🗑️ **Eliminación**: Remover productos del sistema
+### 🎲 Modalidades de Juego
+- **👤 Modo Jugador**: Resuelve el rompecabezas manualmente
+- **🤖 Modo Demostración**: Observa cómo la IA resuelve el juego automáticamente
 
-### 📈 Control de Inventario
-- 📥 **Entradas**: Registrar compras, devoluciones y ajustes positivos
-- 📤 **Salidas**: Registrar ventas, mermas y ajustes negativos
-- 📊 **Estado del stock**: Consulta en tiempo real del inventario
-- 🔎 **Búsqueda avanzada**: Por nombre o código de producto
+### 🎚️ Niveles de Dificultad
+| Nivel | Discos | Dificultad | Movimientos Mínimos |
+|-------|--------|------------|-------------------|
+| 🟢 Fácil | 3 discos | Principiante | 7 movimientos |
+| 🟡 Medio | 6 discos | Intermedio | 63 movimientos |
+| 🔴 Difícil | 8 discos | Avanzado | 255 movimientos |
 
-### 💾 Persistencia de Datos
-- 📄 Almacenamiento en formato JSON
-- 🔄 Conservación de datos entre ejecuciones
-- 🚫 Sin dependencias de bases de datos externas
+### 🧠 Sistema de IA Inteligente
+- **Múltiples estrategias**: La IA utiliza diferentes rutas de solución
+- **Rotación de algoritmos**: Cada demostración muestra una estrategia diferente
+- **Contador de rutas**: Indica qué estrategia se está ejecutando
+- **Optimización progresiva**: Desde la solución más eficiente hasta la más compleja
 
-## 🛠️ Tecnologías Utilizadas
+## 📋 Reglas del Juego
 
-| Tecnología | Versión | Propósito |
-|------------|---------|-----------|
-| 🐍 Python | 3.6+ | Lenguaje principal |
-| 📄 JSON | - | Almacenamiento de datos |
-| 🎨 POO | - | Paradigma de programación |
+El objetivo es mover todos los discos de la varilla inicial a otra varilla siguiendo estas reglas:
 
-## 📋 Requisitos del Sistema
+1. 🔄 **Solo un disco por vez**: Únicamente puedes mover un disco en cada jugada
+2. 📏 **Orden de tamaño**: Un disco grande nunca puede ir sobre uno más pequeño
+3. 🔝 **Solo el disco superior**: Solo puedes tomar el disco que está en la parte superior de cada varilla
 
-- Python 3.6 o superior
-- Permisos de lectura/escritura en el directorio del proyecto
+## 🎛️ Controles
+
+### 👤 Modo Jugador
+- 🖱️ **Mouse**: Interacción completa con los discos (clic y arrastrar)
+- ⌨️ **Teclado**: No se utiliza en modo jugador
+
+### 🤖 Modo Demostración
+- ⏸️ **Enter o Escape**: Cancelar demostración y volver al menú principal
+- ✅ **Confirmación**: El sistema pedirá confirmación antes de salir
 
 ## 🚀 Instalación y Uso
 
+### Prerrequisitos
+- Python 3.6 o superior
+- Bibliotecas gráficas (especificadas en requirements.txt)
+
 ### 1️⃣ Clonar el repositorio
 ```bash
-git clone https://github.com/tu-usuario/sistema-inventario.git
+git clone https://github.com/AlejandroXV5/Practica-Torre-de-Hanoi.git
 ```
 
 ### 2️⃣ Navegar al directorio
 ```bash
-cd sistema-inventario
+cd Practica-Torre-de-Hanoi
 ```
 
-### 3️⃣ Ejecutar el programa
+### 3️⃣ Instalar dependencias
+```bash
+pip install -r requirements.txt
+```
+
+### 4️⃣ Ejecutar el juego
 ```bash
 python main.py
 ```
 
-### 4️⃣ Usar la interfaz
-Sigue las opciones del menú interactivo en la consola para gestionar tu inventario.
+## 📊 Funcionalidades
 
-> **💡 Nota**: El archivo `inventario.json` se creará automáticamente en la primera ejecución.
+### 🎯 Sistema de Puntuación
+- ⏱️ **Tiempo de juego**: Cronómetro automático
+- 🔢 **Contador de movimientos**: Seguimiento de cada jugada
+- 📈 **Estadísticas finales**: Resumen al completar el juego
 
-## 📁 Estructura del Proyecto
+### 🎨 Interfaz Gráfica
+- 🖼️ **Visualización clara**: Discos y varillas fáciles de identificar
+- 🎭 **Animaciones suaves**: Movimientos fluidos de los discos
+- 🎨 **Diseño intuitivo**: Interfaz amigable para el usuario
+
+### 🤖 Algoritmos de IA
+- 📚 **Múltiples estrategias**: Diferentes enfoques de resolución
+- 🔄 **Rotación automática**: Cambia de estrategia en cada demostración
+- 📊 **Optimización**: Desde soluciones óptimas hasta alternativas creativas
+
+## 🏗️ Arquitectura del Proyecto
 
 ```
-sistema-inventario/
+Practica-Torre-de-Hanoi/
 │
-├── 🐍 main.py                 # Punto de entrada del programa
-├── 📦 inventario.py           # Clase principal de gestión
-├── 🏷️  producto.py            # Modelo de producto
-├── 📊 movimiento.py           # Registro de movimientos
-├── 📂 data/
-│   └── 📄 inventario.json     # Almacenamiento persistente
-├── 📖 README.md               # Documentación del proyecto
-└── 📜 LICENSE                 # Licencia del proyecto
+├── 🐍 main.py                 # Punto de entrada principal
+├── 🎮 game.py                 # Lógica principal del juego
+├── 🤖 ai_solver.py            # Algoritmos de inteligencia artificial
+├── 🎨 gui.py                  # Interfaz gráfica de usuario
+├── 📊 game_state.py           # Manejo del estado del juego
+├── 🗼 tower.py                # Clase de las torres/varillas
+├── 💿 disk.py                 # Clase de los discos
+├── 📋 menu.py                 # Sistema de menús
+├── 📂 assets/                 # Recursos gráficos
+│   ├── 🖼️ images/
+│   └── 🔊 sounds/
+├── 📖 docs/                   # Documentación del proyecto
+├── 🧪 tests/                  # Pruebas unitarias
+├── 📄 requirements.txt        # Dependencias del proyecto
+└── 📖 README.md
 ```
 
-## 👥 Colaboradores
+## 👥 Equipo de Desarrollo
 
 <table>
   <tr>
     <td align="center">
       <strong>🧑‍💻 JaIro Herrera Romero</strong><br>
-      <sub>Estudiante de Ingeniería en TI</sub>
+      <sub>Estudiante de Ingeniería en TI</sub><br>
+      <sub>Desarrollo de IA y Algoritmos</sub>
     </td>
     <td align="center">
       <strong>🧑‍💻 Alejandro Bolaños Chinchilla</strong><br>
-      <sub>Estudiante de Ingeniería en TI</sub>
+      <sub>Estudiante de Ingeniería en TI</sub><br>
+      <sub>Interfaz Gráfica y UX</sub>
     </td>
   </tr>
 </table>
 
+## 🎓 Contexto Académico
+
+Este proyecto fue desarrollado como parte del curso de **Programación con Inteligencia Artificial**, con los siguientes objetivos académicos:
+
+- ✅ Aplicación de algoritmos de IA para resolución de problemas
+- ✅ Implementación de interfaces gráficas interactivas
+- ✅ Manejo de estructuras de datos complejas
+- ✅ Desarrollo de sistemas con múltiples modalidades de uso
+- ✅ Práctica de versionado con Git y documentación técnica
+
+## 📚 Referencias Técnicas
+
+- 🔗 [Algoritmo Clásico de Torres de Hanói](https://es.wikipedia.org/wiki/Torres_de_Han%C3%B3i)
+- 🔗 [Introducción a IA](http://dmi.uib.es/~abasolo/intart/1-introduccion.html#1.2)
+- 🔗 [Visualización del Problema](https://cdn.kastatic.org/ka-cs-algorithms/hanoi-5-init.png)
+
 ## 🤝 Contribuciones
 
-Las contribuciones son bienvenidas. Para cambios importantes:
+Este es un proyecto académico, pero las sugerencias y mejoras son bienvenidas:
 
-1. 🍴 Haz fork del proyecto
-2. 🌿 Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. 💾 Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. 📤 Push a la rama (`git push origin feature/AmazingFeature`)
-5. 🔄 Abre un Pull Request
+1. 🍴 Fork del repositorio
+2. 🌿 Crear rama para nueva característica
+3. 💾 Commit de cambios
+4. 📤 Push a la rama
+5. 🔄 Crear Pull Request
 
 ## 📄 Licencia
 
-Este proyecto está bajo la **Licencia MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Proyecto desarrollado con fines académicos bajo supervisión universitaria.
 
 ---
 
 <div align="center">
 
-**⭐ Si este proyecto te fue útil, no olvides darle una estrella ⭐**
+**🎮 ¡Disfruta resolviendo las Torres de Hanói! 🗼**
 
-**🔗 [Otros proyectos](https://github.com/AlejandroXV5/Practica-Torre-de-Hanoi.git)**
+**⭐ Si te gustó el proyecto, no olvides darle una estrella ⭐**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/AlejandroXV5/Practica-Torre-de-Hanoi.git)
 
 </div>
