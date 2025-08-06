@@ -1,15 +1,15 @@
 # ai_solver.py
-from itertools import permutations
-
 class AISolver:
-    def _init_(self):
+    def __init__(self):
         # Contador de demostraciones por nivel
         self.demo_counter = {3: 0, 6: 0, 8: 0}
-        # Almacena rutas por nivel: [ruta_optima, ruta_alternativa1, ...]
+        # Diccionario para almacenar las rutas por nivel
         self.routes = {3: [], 6: [], 8: []}
+        # ✅ Llamamos al método que genera todas las rutas
         self._generate_all_routes()
 
     def _solve_optimal(self, n, src, dest, aux):
+        """Solución óptima clásica (mínimo de movimientos: 2^n - 1)"""
         if n == 1:
             return [(src, dest)]
         return (
@@ -19,7 +19,7 @@ class AISolver:
         )
 
     def _solve_alternative_1(self, n, src, dest, aux):
-        # Usa un orden no óptimo: src -> dest -> aux como paso intermedio
+        """Ruta alternativa: más pasos, pero válida"""
         if n == 1:
             return [(src, aux), (aux, dest)]
         return (
@@ -31,28 +31,39 @@ class AISolver:
         )
 
     def _solve_alternative_2(self, n, src, dest, aux):
-        # Camino más largo: fuerza movimientos extra
-        if n <= 2:
+        """Ruta más larga: simula ineficiencia controlada"""
+        if n == 1:
+            return [(src, dest)]
+        if n == 2:
             return [(src, aux), (src, dest), (aux, dest)]
         return (
-            self._solve_optimal(n-2, src, dest, aux) +
-            [(src, aux), (src, dest), (aux, dest)] +
-            self._solve_optimal(n-2, dest, src, aux) +
-            [(dest, aux)] +
-            self._solve_optimal(n-1, src, dest, aux)
+            self._solve_optimal(n-1, src, aux, dest) +
+            [(src, dest)] +
+            self._solve_alternative_2(n-1, aux, src, dest)
         )
 
     def _generate_routes(self, n):
-        optimal = self._solve_optimal(n, 0, 2, 1)
-        alt1 = self._solve_alternative_1(n, 0, 2, 1)
-        alt2 = self._solve_alternative_2(n, 0, 2, 1)
-        return [optimal, alt1, alt2]
+        """Genera 3 rutas diferentes para el nivel n"""
+        try:
+            optimal = self._solve_optimal(n, 0, 2, 1)          # Ruta óptima
+            alt1 = self._solve_alternative_1(n, 0, 2, 1)       # Alternativa 1
+            alt2 = self._solve_alternative_2(n, 0, 2, 1)       # Alternativa 2
+            return [optimal, alt1, alt2]
+        except RecursionError:
+            # Por si hay problemas con recursión en n=8
+            return [self._solve_optimal(n, 0, 2, 1)] * 3
 
     def _generate_all_routes(self):
+        """Genera y almacena todas las rutas para niveles 3, 6 y 8"""
         for n in [3, 6, 8]:
             self.routes[n] = self._generate_routes(n)
 
     def get_next_route(self, num_discs):
+        """
+        Devuelve la siguiente ruta para el nivel dado.
+        Alterna entre óptima → alternativa1 → alternativa2 → reinicia.
+        También devuelve el número de demostración actual.
+        """
         route_list = self.routes[num_discs]
         idx = self.demo_counter[num_discs] % len(route_list)
         self.demo_counter[num_discs] += 1
