@@ -1,33 +1,24 @@
-# game.py
 class HanoiGame:
     def __init__(self, num_discs):
         self.num_discs = num_discs
-        self.pegs = [list(range(num_discs, 0, -1)), [], []]  # [origen, aux, destino]
+        self.pegs = [[i for i in range(num_discs, 0, -1)], [], []]
         self.moves = 0
-        self.start_time = None
         self.is_running = False
+        self.start_time = None
 
     def move(self, from_peg, to_peg):
-        if self.is_valid_move(from_peg, to_peg):
-            disk = self.pegs[from_peg].pop()
-            self.pegs[to_peg].append(disk)
-            self.moves += 1
-            return True
-        return False
-
-    def is_valid_move(self, from_peg, to_peg):
-        if len(self.pegs[from_peg]) == 0:
+        """Mueve un disco de una torre a otra si es válido"""
+        if not self.pegs[from_peg]:
+            print("Error: intento de mover desde una torre vacía")
             return False
-        if len(self.pegs[to_peg]) == 0:
-            return True
-        return self.pegs[from_peg][-1] < self.pegs[to_peg][-1]
+        if self.pegs[to_peg] and self.pegs[to_peg][-1] < self.pegs[from_peg][-1]:
+            print("Error: movimiento inválido (disco más grande sobre uno más pequeño)")
+            return False
+        disk = self.pegs[from_peg].pop()
+        self.pegs[to_peg].append(disk)
+        self.moves += 1
+        return True
 
     def is_solved(self):
-        return (len(self.pegs[1]) == self.num_discs or len(self.pegs[2]) == self.num_discs)
-
-    def reset(self, num_discs):
-        self.num_discs = num_discs
-        self.pegs = [list(range(num_discs, 0, -1)), [], []]
-        self.moves = 0
-        self.start_time = None
-        self.is_running = False
+        """Verifica si el juego está resuelto"""
+        return len(self.pegs[0]) == 0 and len(self.pegs[1]) == 0
